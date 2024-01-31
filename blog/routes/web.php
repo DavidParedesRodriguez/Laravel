@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/posts', function () {
+Route::get('/', function () {
     return view('Listado de posts');
+});
+
+Route::get('/posts', function () {
+    return ('Listado de posts');
 });
