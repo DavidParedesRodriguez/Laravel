@@ -60,16 +60,22 @@ Route::get('posts/{id}', function ($id) {
 /*Pon un nombre a las tres rutas que hay definidas hasta ahora: a la página de inicio ponle el nombre "inicio",
 a la del listado la llamaremos "posts_listado" y a la de ficha que acabas de crear, la llamaremos "posts_ficha".*/
 
+/*
 Route::get('/', function () {
     return "Página de Inicio";
 })->name('inicio');
-
+*/
 
 Route::get('listado', function () {
     return "Página de listado";
 })->name('posts_listado');
 
-
+/*
 Route::get('/', function () {
     return "Página de Inicio";
+})->name('inicio');
+*/
+
+Route::get('inicio', function () {
+    return view('inicio');
 })->name('inicio');
