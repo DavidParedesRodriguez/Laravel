@@ -1,12 +1,8 @@
-<html>
-
-<head>
-    <title>Inicio</title>
-</head>
-
-<body>
-    <h1>Página de inicio</h1>
-    <p>Bienvenido/a <?php echo $nombre; ?></p>
-</body>
-
-</html>
+@extends('plantilla')
+@section('titulo', 'Inicio')
+@section('contenido')
+    <div class="container mt-5">
+        <h1>Bienvenido al Blog</h1>
+        <p>Descubre y comparte conocimientos sobre diversos temas.</p>
+    </div>
+@endsection
