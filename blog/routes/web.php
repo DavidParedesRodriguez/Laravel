@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PruebaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,3 +124,12 @@ Route::get('listado', function () {
 Route::get('ficha/{id}', function ($id) {
     return view('posts.ficha', compact('id'));
 })->name('ficha_post');
+
+//T3: Ejercicio 1
+Route::resource('posts', 'App\Http\Controllers\PruebaController')->only([
+    'index', 'show', 'create', 'edit'
+]);
+
+
+Route::get('/posts/create', [PruebaController::class, 'create'])->name('posts.create');
+Route::get('/posts/{id}/edit', [PruebaController::class, 'edit'])->name('posts.edit');
