@@ -35,9 +35,12 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+
     public function create()
     {
-        return "Nuevo post";
+      //  return "Nuevo post";
+      return redirect()->route('inicio');
     }
 
     /**
@@ -45,7 +48,8 @@ class PostController extends Controller
      */
     public function edit()
     {
-        return "Edición de post";
+        //return "Edición de post";
+        return redirect()->route('inicio');
     }
 
     /**
