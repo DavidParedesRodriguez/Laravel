@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\PostController;
+use PhpParser\Node\Expr\PostDec;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,10 +128,15 @@ Route::get('ficha/{id}', function ($id) {
 })->name('ficha_post');
 
 //T3: Ejercicio 1
-Route::resource('posts', 'App\Http\Controllers\PruebaController')->only([
+Route::resource('posts', PostController::class)->only([
     'index', 'show', 'create', 'edit'
 ]);
 
+Route::get('/posts/editar', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/posts/crear', [PostController::class, 'create'])->name('posts.create');
 
-Route::get('/posts/create', [PruebaController::class, 'create'])->name('posts.create');
-Route::get('/posts/{id}/edit', [PruebaController::class, 'edit'])->name('posts.edit');
+
+/*
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+*/
