@@ -9,4 +9,8 @@ class Post extends Model
 {
     protected $fillable = ['titulo', 'contenido'];
 
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
 }
