@@ -140,3 +140,13 @@ Route::get('/posts/crear', [PostController::class, 'create'])->name('posts.creat
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 */
+
+//t4 ej2
+
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+Route::post('/posts/nuevo-prueba', [PostController::class, 'nuevoPrueba'])->name('posts.nuevoPrueba');
+Route::post('/posts/editar-prueba', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
+
