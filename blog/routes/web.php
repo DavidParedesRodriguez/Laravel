@@ -129,7 +129,7 @@ Route::get('ficha/{id}', function ($id) {
 
 //T3: Ejercicio 1
 Route::resource('posts', PostController::class)->only([
-    'index', 'show', 'edit'
+    'index', 'create', 'show', 'edit'
 ]);
 
 
@@ -153,7 +153,7 @@ Route::post('/posts/nuevo-prueba', [PostController::class, 'nuevoPrueba'])->name
 Route::post('/posts/editar-prueba', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
 
 //t6 formulario
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('/posts/formulario', [PostController::class, 'formulario'])->name('posts.formulario');
 
 
 

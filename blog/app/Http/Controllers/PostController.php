@@ -45,10 +45,15 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
 
+     public function formulario()
+     {
+         return view('posts.formulario');
+     }
+
 
      public function create()
      {
-         return view('posts.create');
+         return view('posts.formulario');
      }
 
     /**

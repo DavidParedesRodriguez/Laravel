@@ -4,7 +4,7 @@
 
     <a class="navbar-brand" href="{{ route('posts.edit') }}">Editar Post</a>
     <a class="navbar-brand" href="{{ route('post.index') }}">Ver Posts</a>
-    <a class="navbar-brand" href="{{ route('posts.create') }}">Crear Nuevo Post</a>
+    <a class="navbar-brand" href="{{ route('posts.formulario') }}">Crear Nuevo Post</a>
 
 
 </nav>
