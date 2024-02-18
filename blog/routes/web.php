@@ -153,8 +153,8 @@ Route::post('/posts/nuevo-prueba', [PostController::class, 'nuevoPrueba'])->name
 Route::post('/posts/editar-prueba', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
 
 //t6 formulario
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
 
 
 

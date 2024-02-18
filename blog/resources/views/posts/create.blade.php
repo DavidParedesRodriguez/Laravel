@@ -15,7 +15,6 @@
                 <label for="contenido">Contenido:</label>
                 <textarea class="form-control" id="contenido" name="contenido" rows="5"></textarea>
             </div>
-            <!-- Aquí podrías agregar un campo oculto para el id del autor si lo deseas -->
             <button type="submit" class="btn btn-primary">Crear Post</button>
         </form>
     </div>

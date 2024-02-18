@@ -46,13 +46,10 @@ class PostController extends Controller
      */
 
 
-    public function create()
-    {
-        //  return "Nuevo post";
-        //return redirect()->route('inicio');
-        return view('posts.create');
-
-    }
+     public function create()
+     {
+         return view('posts.create');
+     }
 
     /**
      * Show the form for editing the specified resource.
