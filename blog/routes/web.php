@@ -129,12 +129,14 @@ Route::get('ficha/{id}', function ($id) {
 
 //T3: Ejercicio 1
 Route::resource('posts', PostController::class)->only([
-    'index', 'show', 'create', 'edit'
+    'index', 'show', 'edit'
 ]);
 
-Route::get('/posts/editar', [PostController::class, 'edit'])->name('posts.edit');
-Route::get('/posts/crear', [PostController::class, 'create'])->name('posts.create');
 
+Route::get('/posts/editar', [PostController::class, 'edit'])->name('posts.edit');
+/*
+Route::get('/posts/crear', [PostController::class, 'create'])->name('posts.create');
+*/
 
 /*
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
@@ -149,4 +151,17 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 
 Route::post('/posts/nuevo-prueba', [PostController::class, 'nuevoPrueba'])->name('posts.nuevoPrueba');
 Route::post('/posts/editar-prueba', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
+
+//t6 formulario
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+
+
+
+
+
+
+
+
 
