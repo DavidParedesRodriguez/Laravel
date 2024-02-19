@@ -9,7 +9,6 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      */
@@ -49,8 +48,8 @@ class PostController extends Controller
 
     public function create()
     {
-        $posts = Post::get()->firts();
-        return view('posts.create', compact('posts'));
+        //  return "Nuevo post";
+        return redirect()->route('inicio');
     }
 
     /**
@@ -65,27 +64,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // Método para almacenar el nuevo post en la base de datos
     public function store(Request $request)
     {
-        // Validar los datos del formulario
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'contenido' => 'required|string',
-        ]);
-
-        // Crear un nuevo post con los datos del formulario
-        $post = new Post();
-        $post->titulo = $request->titulo;
-        $post->contenido = $request->contenido;
-        // Asignar el usuario predefinido (puedes cambiar esto más adelante)
-        $post->user_id = 1; // Suponiendo que el usuario predefinido tiene ID 1
-        $post->save();
-
-        // Redirigir al listado principal de posts
-        return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
+        //
     }
-
 
     /**
      * Update the specified resource in storage.
