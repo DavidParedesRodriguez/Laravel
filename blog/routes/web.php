@@ -145,15 +145,15 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edi
 
 //t4 ej2
 
-Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.postIndex');
+
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 Route::post('/posts/nuevo-prueba', [PostController::class, 'nuevoPrueba'])->name('posts.nuevoPrueba');
 Route::post('/posts/editar-prueba', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
 
-//t6 formulario
-Route::get('/posts/formulario', [PostController::class, 'formulario'])->name('posts.formulario');
+
 
 
 

@@ -9,6 +9,7 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -45,16 +46,12 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
 
-     public function formulario()
-     {
-         return view('posts.formulario');
-     }
 
-
-     public function create()
-     {
-         return view('posts.formulario');
-     }
+    public function create()
+    {
+        $posts = Post::get()->firts();
+        return view('posts.create', compact('posts'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -70,24 +67,24 @@ class PostController extends Controller
      */
     // Método para almacenar el nuevo post en la base de datos
     public function store(Request $request)
-{
-    // Validar los datos del formulario
-    $request->validate([
-        'titulo' => 'required|string|max:255',
-        'contenido' => 'required|string',
-    ]);
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required|string',
+        ]);
 
-    // Crear un nuevo post con los datos del formulario
-    $post = new Post();
-    $post->titulo = $request->titulo;
-    $post->contenido = $request->contenido;
-    // Asignar el usuario predefinido (puedes cambiar esto más adelante)
-    $post->user_id = 1; // Suponiendo que el usuario predefinido tiene ID 1
-    $post->save();
+        // Crear un nuevo post con los datos del formulario
+        $post = new Post();
+        $post->titulo = $request->titulo;
+        $post->contenido = $request->contenido;
+        // Asignar el usuario predefinido (puedes cambiar esto más adelante)
+        $post->user_id = 1; // Suponiendo que el usuario predefinido tiene ID 1
+        $post->save();
 
-    // Redirigir al listado principal de posts
-    return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
-}
+        // Redirigir al listado principal de posts
+        return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
+    }
 
 
     /**
