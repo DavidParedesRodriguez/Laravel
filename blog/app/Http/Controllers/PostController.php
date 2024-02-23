@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Http\Requests\postsPost;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         /*
         request()->validate([
@@ -55,6 +56,7 @@ class PostController extends Controller
             ]
         );
            */
+          
          // Validación de los datos del formulario
          $request->validate([
             'titulo' => 'required|max:255',
