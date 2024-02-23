@@ -14,6 +14,7 @@ class UsuariosSeeder extends Seeder
      */
     public function run(): void
     {
+        // Usar el factory UsuarioFactory para crear 3 usuarios de prueba
         Usuario::factory()->count(3)->create();
     }
 }

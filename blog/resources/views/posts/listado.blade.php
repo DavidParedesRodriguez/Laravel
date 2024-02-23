@@ -1,5 +1,6 @@
 @extends('plantilla')
-@section('titulo', 'Listado de Posts')
+@section('titulo', '"Listado posts')
 @section('contenido')
-    <h1>Listado de posts</h1>
+ <h1>Listado posts {{ $id }}</h1>
+
 @endsection

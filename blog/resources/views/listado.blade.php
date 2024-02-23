@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-       <h1>INICIO</h1>
+       <h1>LISTADO</h1>
     </body>
 </html>

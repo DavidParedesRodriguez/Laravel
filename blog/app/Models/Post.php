@@ -25,4 +25,5 @@ class Post extends Model
     {
         return \Database\Factories\PostFactory::new();
     }
+
 }

@@ -2,75 +2,109 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\postsPost;
 use Illuminate\Http\Request;
 
-//importar el modelo Post
 use App\Models\Post;
+use App\Models\Usuario;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // return view('post.index');
-        $posts = Post::orderBy('titulo', 'asc')->paginate(5);
-        return view('posts.postIndex', compact('posts'));
-    }
+        //    return view('posts.index');
 
-    /**
-     * Show the specified resource.
-     */
+        //  return "index";
 
-    /*
-    public function show($id)
-    {
-        return view('posts.show');
-    }
-*/
-
-    public function show($id)
-    {
-        /*
-        $detalle = $this->edit(); // Llamada al método edit()
-        return view('posts.show', compact('detalle'));
-        */
-        // Obtener el post por su ID
-        $post = Post::findOrFail($id);
-        return view('posts.show', compact('post'));
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        return view('posts.index', compact('posts'));
     }
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
-
-
     public function create()
     {
-        //  return "Nuevo post";
-        return redirect()->route('inicio');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit()
-    {
-        //return "Edición de post";
-        return redirect()->route('inicio');
+        //
+        //  redirect()->route('index');
+        // return "Nuevo post";
+        // $posts = Post::get();
+        $posts = Post::get()->first();
+        return view('posts.create', compact('posts'));
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        /*
+        request()->validate([
+            'titulo'=> 'required|min:5',
+            'contenido'=>'required|min:50'
+            ]
+        );
+           */
+         // Validación de los datos del formulario
+         $request->validate([
+            'titulo' => 'required|max:255',
+            'contenido' => 'required',
+        ]);
+
+        // Crear un nuevo post con los datos del formulario
+        $post = new Post();
+        $post->titulo = $request->titulo;
+        $post->contenido = $request->contenido;
+        // Asignar el autor predefinido (usuario con id = 1)
+        $post->usuario_id = 1; // Cambia este valor si prefieres obtener el primer usuario de la base de datos
+        $post->save();
+
+        // Redirigir al listado de posts con un mensaje de éxito
+        return redirect()->route('posts.index')->with('success', 'Post creado correctamente');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+       // $post = Post::where('id', '=', $id)->get();
+        //return view('posts.show', compact('post'));
+        $post = Post::findOrFail($id);
+    return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
         //
+        return "Edicion de post";
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -79,52 +113,51 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        // Buscar el post por su ID
-        $post = Post::findOrFail($id);
+         // Obtener el post por su ID
+         $post = Post::findOrFail($id);
 
-        // Eliminar el post
-        $post->delete();
+         // Eliminar el post
+         $post->delete();
 
-        // Redirigir a la página de listado de posts
-        return redirect('/posts')->with('success', 'Post eliminado correctamente.');
+         // Redirigir al listado de posts con un mensaje de éxito
+         return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente');
     }
 
+    //metodos creados t4
 
     public function nuevoPrueba()
     {
-        $titulo = "Título " . rand();
-        $contenido = "Contenido " . rand();
-        Post::create(['titulo' => $titulo, 'contenido' => $contenido]);
-        return redirect()->route('post.index')->with('success', 'Post de prueba creado correctamente.');
+        // Crear un nuevo usuario
+        $usuario = new Usuario();
+        $usuario->login = 'Usuario ' . rand();
+        $usuario->password = bcrypt('contraseña'); // Asigna una contraseña encriptada
+        $usuario->save();
+
+        // Crear un nuevo post y asociarlo al usuario creado
+        $post = new Post();
+        $post->titulo = 'Título ' . rand(); // Generar un título aleatorio
+        $post->contenido = 'Contenido ' . rand(); // Generar un contenido aleatorio
+        $post->usuario_id = $usuario->id; // Asociar el post al usuario
+        $post->save();
+
+        // Redirigir a la página de listado de posts con un mensaje de éxito
+        return redirect()->route('posts.index')->with('success', 'Post de prueba creado correctamente.');
     }
 
-    public function editarPrueba(Request $request)
+
+    public function editarPrueba($id)
     {
-        // Obtener el ID del post del formulario
-        $id = $request->input('postId');
+        $post = Post::findOrFail($id);
+        $post->titulo = 'Título ' . rand();
+        $post->contenido = 'Contenido ' . rand();
+        $post->save();
 
-        // Buscar el post por su ID
-        $post = Post::find($id);
-
-        // Verificar si se encontró el post
-        if ($post) {
-            // Generar un título y contenido aleatorios
-            $titulo = "Título " . rand();
-            $contenido = "Contenido " . rand();
-
-            // Actualizar el título y contenido del post
-            $post->titulo = $titulo;
-            $post->contenido = $contenido;
-            $post->save();
-
-            // Redirigir a la página de listado de posts con un mensaje de éxito
-            return redirect()->route('post.index')->with('success', 'Post de prueba editado correctamente.');
-        } else {
-            // Si no se encuentra el post, redirigir con un mensaje de error
-            return redirect()->route('post.index')->with('error', 'No se encontró el post con el ID proporcionado.');
-        }
+        return redirect()->route('posts.index')->with('success', 'Post de prueba editado correctamente.');
     }
 }

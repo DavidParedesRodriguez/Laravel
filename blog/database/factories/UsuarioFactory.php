@@ -24,8 +24,8 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'login' => $this->faker->unique()->word,
-            'password' => 'password', // Contraseña sin encriptar para identificación
+            'login' => $this->faker->unique()->userName,
+            'password' => 'password123', // Contraseña sin encriptar para identificación
         ];
     }
 
