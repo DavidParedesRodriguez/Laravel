@@ -1,10 +1,11 @@
 <?php
 
+
 namespace Database\Factories;
 
+use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,9 +24,12 @@ class UsuarioFactory extends Factory
      */
     public function definition(): array
     {
+        $login = $this->faker->unique()->userName; // Genera un nombre de usuario único
+        $password = Hash::make($login); // Encripta el nombre de usuario como contraseña
+
         return [
-            'login' => $this->faker->unique()->userName,
-            'password' => 'password123', // Contraseña sin encriptar para identificación
+            'login' => $login,
+            'password' => $password,
         ];
     }
 

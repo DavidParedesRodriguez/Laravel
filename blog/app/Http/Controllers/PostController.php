@@ -11,6 +11,11 @@ use App\Models\Usuario;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,26 +54,20 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        /*
-        request()->validate([
-            'titulo'=> 'required|min:5',
-            'contenido'=>'required|min:50'
-            ]
-        );
-           */
-          
-         // Validación de los datos del formulario
-         $request->validate([
+        // Validar los datos del formulario
+        $request->validate([
             'titulo' => 'required|max:255',
             'contenido' => 'required',
         ]);
 
-        // Crear un nuevo post con los datos del formulario
+        // Obtener el usuario autenticado
+        $usuarioAutenticado = auth()->user();
+
+        // Crear un nuevo post con los datos del formulario y el usuario autenticado
         $post = new Post();
         $post->titulo = $request->titulo;
         $post->contenido = $request->contenido;
-        // Asignar el autor predefinido (usuario con id = 1)
-        $post->usuario_id = 1; // Cambia este valor si prefieres obtener el primer usuario de la base de datos
+        $post->usuario_id = $usuarioAutenticado->id; // Asignar el ID del usuario autenticado
         $post->save();
 
         // Redirigir al listado de posts con un mensaje de éxito
@@ -83,10 +82,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-       // $post = Post::where('id', '=', $id)->get();
+        // $post = Post::where('id', '=', $id)->get();
         //return view('posts.show', compact('post'));
         $post = Post::findOrFail($id);
-    return view('posts.show', compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -121,14 +120,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-         // Obtener el post por su ID
-         $post = Post::findOrFail($id);
+        // Obtener el post por su ID
+        $post = Post::findOrFail($id);
 
-         // Eliminar el post
-         $post->delete();
+        // Eliminar el post
+        $post->delete();
 
-         // Redirigir al listado de posts con un mensaje de éxito
-         return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente');
+        // Redirigir al listado de posts con un mensaje de éxito
+        return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente');
     }
 
     //metodos creados t4

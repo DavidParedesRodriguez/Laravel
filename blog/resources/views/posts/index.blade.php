@@ -5,38 +5,36 @@
 @section('contenido')
     <h1>Listado de posts</h1>
     <ul>
-        @foreach ($posts as $p)
+        @foreach ($posts as $post)
             <li>
-                {{ $p->titulo }}
-                @if ($p->usuario)
-                    ({{ $p->usuario->login }})
+                {{ $post->titulo }}
+                @if ($post->usuario)
+                    ({{ $post->usuario->login }})
                 @else
                     (Usuario desconocido)
                 @endif
-                <a href="{{ route('posts.show', $p->id) }}" class="btn btn-primary">Ver</a>
+                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Ver</a>
 
-                <!-- Botón para editar el post -->
+                <!-- Mostrar botones de edición y eliminación solo si el usuario autenticado es el propietario del post -->
+                @auth
+                    @if ($post->usuario_id === Auth::id())
+                        <!-- Enlace para editar el post -->
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Editar</a>
 
-                <!-- Enlace para editar el post -->
-                <form action="{{ route('posts.editarPrueba', $p->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('PUT')
-                    <button type="submit" class="btn btn-warning">Editar</button>
-                </form>
-
-                <!-- Formulario para eliminar el post -->
-                <form action="{{ route('posts.destroy', $p->id) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
+                        <!-- Formulario para eliminar el post -->
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    @endif
+                @endauth
             </li>
         @endforeach
     </ul>
 
     <!-- Botón para crear un nuevo post de prueba -->
-    <form action="{{ route('posts.nuevoPrueba') }}" method="POST" style="display: inline;">
-        @csrf
-        <button type="submit" class="btn btn-success">Crear Post de Prueba</button>
+    <form action="{{ route('posts.create') }}" method="GET" style="display: inline;">
+        <button type="submit" class="btn btn-success">Crear Post</button>
     </form>
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -96,4 +96,13 @@ Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.de
 //eliminar el post desde el show.blade.php
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+//t7: formulario login y autenticar usuario
+// Ruta para mostrar el formulario de login
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+// Ruta para autenticar al usuario
+Route::post('/login', [AuthController::class, 'login']);
+
+//Cierre de sesion
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
