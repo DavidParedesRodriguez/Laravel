@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "0368912b-fedd-49dc-a211-9468721523b1",
+		"name": "Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31270789"
+	},
+	"item": [
+		{
+			"name": "store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 15,\r\n    \"titulo\": \"Antonio\",\r\n    \"contenido\": \"soy antonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonioantonio\",\r\n    \"usuario_id\": 1,\r\n    \"created_at\": \"2024-02-24T09:28:16.000000Z\",\r\n    \"updated_at\": \"2024-02-24T09:28:16.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/posts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 9,\r\n    \"titulo\": \"Título 1126942632\",\r\n    \"contenido\": \"dasfasdfasdf afasdgsfdg sfdgsfdgs sfdgsfdg ssfdgsfdg sdfgsfdgs sdfgsfgsfdg sfdgsg sfdgsfdgsdfgsfdgssfdgsfdgfgsgf\",\r\n    \"usuario_id\": 1,\r\n    \"created_at\": \"2024-02-24T09:28:16.000000Z\",\r\n    \"updated_at\": \"2024-02-24T09:28:16.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/posts/9",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/posts/8?=8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"8"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/posts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 8,\r\n    \"titulo\": \"Pacoooooooooooooooo\",\r\n    \"contenido\": \"dasfasdfasdf afasdgsfdg sfdgsfdgs sfdgsfdg ssfdgsfdg sdfgsfdgs sdfgsfgsfdg sfdgsg sfdgsfdgsdfgsfdgssfdgsfdgfgsgf\",\r\n    \"usuario_id\": 1,\r\n    \"created_at\": \"2024-02-24T09:28:16.000000Z\",\r\n    \"updated_at\": \"2024-02-24T09:28:16.000000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/posts/8",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
